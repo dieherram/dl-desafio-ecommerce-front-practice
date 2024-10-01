@@ -39,7 +39,7 @@ const ManageProduct = ({ onEditProduct }) => {
                     Editar
                   </button>
                   <button
-                    onClick={() => deleteProduct(product.id)}
+                    onClick={() => deleteProduct(product.id, currentUser.token)}
                     className='btn btn-sm btn-danger'
                   >
                     <i className='bi bi-trash-fill me-1' />
