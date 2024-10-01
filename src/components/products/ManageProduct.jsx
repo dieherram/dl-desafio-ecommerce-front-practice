@@ -1,19 +1,23 @@
 import { useProducts } from '../../contexts/ProductContext'
 import PropTypes from 'prop-types'
 import './ManageProduct.css' // Consider adding some CSS for styling
+import { useAuth } from '../../contexts/AuthContext'
 
 const ManageProduct = ({ onEditProduct }) => {
   const { products, deleteProduct } = useProducts()
-
+  const { currentUser } = useAuth()
+  
   ManageProduct.propTypes = {
     onEditProduct: PropTypes.func.isRequired
   }
+
+  const userProducts = products.filter(product => product.id_usuario === currentUser.id)
 
   return (
     <div className='manage-product-container'>
       <h2 className='m-0 fs-3'>Lista de productos</h2>
       <div className='row'>
-        {products.map((product) => (
+        {userProducts.map((product) => (
           <div key={product.id} className='col-lg-3 col-md-6 p-2 g-col-6 mb-3'>
             <div className='card h-100'>
               <div className='card-img-container'>
